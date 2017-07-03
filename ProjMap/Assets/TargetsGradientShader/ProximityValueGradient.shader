@@ -15,7 +15,7 @@
          #pragma fragment frag
 
          uniform float _MaxEffectArea;
-         static const int _targetsCount = 4;
+         static const int _targetsCount = 200;
          uniform float _TargetValues[_targetsCount];
          uniform float3 _TargetPositions[_targetsCount];
 
@@ -40,7 +40,6 @@
 			  return float3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);
 		  }
           
-
            // Input to vertex shader
          struct vertexInput 
          {
@@ -48,7 +47,7 @@
              float4 texcoord : TEXCOORD0;
           };
 
-         // Input to fragment shader
+         // vertex output to fragment shader
           struct vertexOutput 
           {
              float4 pos : SV_POSITION;
@@ -59,23 +58,22 @@
           // VERTEX SHADER
           vertexOutput vert(vertexInput input) 
           {
+            float4 controlVert = input.vertex;
+
              vertexOutput output; 
-             output.pos =  UnityObjectToClipPos(input.vertex);
              output.position_in_world_space = mul(unity_ObjectToWorld, input.vertex);
              output.tex = input.texcoord;
              
-            for (int i = 0; i < _targetsCount; i++) {
-               
-                if (distance(input.vertex.xyz, _TargetPositions[i]) < 1)
+            for (int i = 0; i < _targetsCount; i++) {  
+                if (distance(input.vertex, _TargetPositions[i]) > 0 
+                && distance(input.vertex, _TargetPositions[i]) < _MaxEffectArea)
                 {
-                output.pos.y = _TargetValues[i];
+                 controlVert.y = _TargetValues[i];
                 }
-             }
+            }
+            output.pos =  UnityObjectToClipPos(controlVert);
             return output;
-
           }
-
-        
   
           // FRAGMENT SHADER
          float4 frag(vertexOutput input) : COLOR 
