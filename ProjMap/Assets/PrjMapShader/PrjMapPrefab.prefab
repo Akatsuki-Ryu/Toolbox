@@ -177,7 +177,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0.7621257, a: 1}
+  m_BackGroundColor: {r: 0.4461263, g: 0.4461263, b: 0.4461263, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -213,7 +213,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 0.92961204, b: 0.6145562, a: 0}
+  m_BackGroundColor: {r: 0, g: 0.488227, b: 0.36196527, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -234,7 +234,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -285,7 +285,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 5f9491eb137764a35ad27a046e061bf2, type: 2}
+  - {fileID: 2100000, guid: 3f64a132eddb74fafb9386784b7559e4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -365,10 +365,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vertices:
-  - {x: -1.5, y: -1.8000002, z: 0}
-  - {x: -0.92, y: 1.4499998, z: 0}
-  - {x: 1.37, y: 1, z: 0}
-  - {x: 1.86, y: -1.6, z: 0}
+  - {x: -1, y: -1, z: 0}
+  - {x: -1, y: 1, z: 0}
+  - {x: 1, y: 1, z: 0}
+  - {x: 1, y: -1, z: 0}
   _showControls: 1
   selectedCorner: 3
 --- !u!124 &124452121333690250
