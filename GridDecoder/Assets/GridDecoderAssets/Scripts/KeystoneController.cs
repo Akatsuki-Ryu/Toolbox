@@ -32,7 +32,6 @@ public class KeystoneController : MonoBehaviour
 	private GameObject[] _corners;
 	public int selectedCorner;
 	private Mesh mesh;
-	private Vector2[] widths_heights = new Vector2[4];
 	private bool needUpdate = true;
 
 	public string _settingsFileName = "_keystoneSettings.json";
@@ -139,7 +138,6 @@ public class KeystoneController : MonoBehaviour
 
 		float V1cV2 = GetCrossProduct (V1, V2);
 		float mua = (GetCrossProduct(P21,V2)) / (V1cV2);
-		float mub = (GetCrossProduct(-P21, V1)) / (V1cV2);
 
 		Vector2 pIntersection = p1 + mua * V1;
 
