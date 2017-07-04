@@ -61,7 +61,7 @@ Material:
     - _GlossMapScale: 0.31
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MaxEffectArea: 3
+    - _MaxEffectArea: 1.82
     - _Metallic: 0.59
     - _Mode: 0
     - _OcclusionStrength: 1
