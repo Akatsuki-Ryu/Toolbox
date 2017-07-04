@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/GridDecoderAssets/GridDecoder.unity
-  isLoaded: 1
-  isActive: 1
