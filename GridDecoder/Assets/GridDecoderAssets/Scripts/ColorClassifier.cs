@@ -20,15 +20,13 @@ public class ColorClassifier {
 	// 0 - white
 	// 1 - black
 	// 2 - red
-	// %3
-
 	private Color[] rgbColor = {
-		new Color (1f, 0f, 0f),
 		new Color (1f, 1f, 1f),
-		new Color (0f, 0f, 0f)
+		new Color (0f, 0f, 0f),
+		new Color (1f, 0f, 0f)
 	};
 
-	public enum SampleColor { RED = 0, WHITE = 1, BLACK = 2 };
+	public enum SampleColor { WHITE = 0, BLACK = 1, RED = 2 };
 	private Dictionary<SampleColor, List<Vector3>> sampleColors = new Dictionary<SampleColor, List<Vector3>>();
 
 	/// <summary>
@@ -61,7 +59,12 @@ public class ColorClassifier {
 		if (!sampleColors.ContainsKey(color)) {
 			sampleColors.Add (color, new List<Vector3>{});
 		}
-		sampleColors[color].Add(new Vector3 (pixel.r, pixel.g, pixel.b));
+		if (sampleColors [color].Count <= index)
+			sampleColors [color].Add (new Vector3 (pixel.r, pixel.g, pixel.b));
+		else 
+			sampleColors[color][index] = new Vector3 (pixel.r, pixel.g, pixel.b);
+
+		Debug.Log ("Curr color " + color + " and length " + sampleColors [color].Count);
 	}
 
 	/// <summary>
