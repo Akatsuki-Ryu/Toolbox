@@ -1,7 +1,7 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{5074F409-8A71-65A2-4AFF-2B167CFB7F4B}") = "CityIO_Unity", "Assembly-CSharp.csproj", "{96909C76-FBAB-043F-E30D-8D54B40F0B7A}"
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityIO_Unity", "Assembly-CSharp.csproj", "{96909C76-FBAB-043F-E30D-8D54B40F0B7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
