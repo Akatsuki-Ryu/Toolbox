@@ -71,7 +71,6 @@ public class ColorClassifier {
 	/// </summary>
 	/// <returns>The color.</returns>
 	public Color GetColor(int id) {
-		SampleColor cId = (SampleColor)id;
 		Color currColor = rgbColor[id];
 		return currColor;
 	}
