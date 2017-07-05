@@ -170,7 +170,7 @@ public class Scanners : MonoBehaviour
 		foreach (var colorCube in sampleCubes) {
 			for (int i = 0; i < colorCube.Value.Count; i++) {
 				colorCube.Value[i].transform.localScale = new Vector3 (0.1f, 0.1f, 0.1f);
-				colorCube.Value[i].transform.position = new Vector3 (0, colorCube.Value[i].transform.parent.position.y + 0.2f, 0);
+				colorCube.Value[i].transform.localPosition = new Vector3 (0, 0.1f, 0);
 			}
 		}
 	}
@@ -324,7 +324,7 @@ public class Scanners : MonoBehaviour
 				_scanner.transform.parent = _gridParent.transform;
 				_scanner.transform.localScale = new Vector3 (_scannerScale, _scannerScale, _scannerScale);  
 				float offset = GameObject.Find (colorTexturedQuadName).GetComponent<Renderer> ().bounds.size.x * 0.5f;
-				_scanner.transform.localPosition = new Vector3 (x * _scannerScale * 2 - offset, 0.1f, y * _scannerScale * 2 - offset);
+				_scanner.transform.localPosition = new Vector3 (x * _scannerScale * 2 - offset, 0.2f, y * _scannerScale * 2 - offset);
 				_scanner.transform.Rotate (90, 0, 0); 
 				scannersList[x, y] = this._scanner;
 			}
