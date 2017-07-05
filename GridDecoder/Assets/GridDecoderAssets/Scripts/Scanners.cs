@@ -9,10 +9,10 @@ using System.Linq;
 [System.Serializable]
 public class ColorSettings {
 	// Color sample objects
-	public Dictionary <int, List<Vector3>> position;
+	public List<Vector3> position;
 
 	public ColorSettings(int positionCount) {
-		position = new Dictionary<int, List<Vector3>>(positionCount);
+		position = new List<Vector3>();
 	}
 }
 
@@ -53,7 +53,6 @@ public class Scanners : MonoBehaviour
 	public GameObject _colorSamplerParent;
 
 	private string colorTexturedQuadName = "KeystonedTextureQuad";
-
 	public string _colorSettingsFileName = "_sampleColorSettings.json";
 
 	private Texture2D hitTex;
@@ -170,7 +169,7 @@ public class Scanners : MonoBehaviour
 		foreach (var colorCube in sampleCubes) {
 			for (int i = 0; i < colorCube.Value.Count; i++) {
 				colorCube.Value[i].transform.localScale = new Vector3 (0.1f, 0.1f, 0.1f);
-				colorCube.Value[i].transform.position = new Vector3 (0, colorCube.Value[i].transform.parent.position.y + 0.2f, 0);
+				colorCube.Value[i].transform.localPosition = new Vector3 (0, 0.1f, 0);
 			}
 		}
 	}
@@ -236,6 +235,8 @@ public class Scanners : MonoBehaviour
 		}
 		for (int i = 0; i < currentIds.GetLength(0); i++) {
 			for (int j = 0; j < currentIds.GetLength(1); j++) {
+				if (currentIds [i, j] >= 0)
+					matrix += " ";
 				matrix += currentIds [i, j] + "";
 				if (currentIds [i, j] >= 0)
 					matrix += " ";
@@ -319,10 +320,15 @@ public class Scanners : MonoBehaviour
 			for (int y = 0; y < numOfScannersY; y++) {
 				_scanner = GameObject.CreatePrimitive (PrimitiveType.Quad);
 				_scanner.name = "grid_" + y + numOfScannersX * x;
-				_scanner.transform.localScale = new Vector3 (_scannerScale, _scannerScale, _scannerScale);  
-				_scanner.transform.localPosition = new Vector3 (_gridParent.transform.position.x + x * _scannerScale * 2, GameObject.Find (colorTexturedQuadName).transform.position.y + 0.1f, y * _scannerScale * 2);
-				_scanner.transform.Rotate (90, 0, 0); 
 				_scanner.transform.parent = _gridParent.transform;
+				_scanner.transform.localScale = new Vector3 (_scannerScale, _scannerScale, _scannerScale);  
+<<<<<<< HEAD
+				_scanner.transform.localPosition = new Vector3 (_gridParent.transform.position.x + x * _scannerScale * 2, GameObject.Find (colorTexturedQuadName).transform.position.y + 0.1f, y * _scannerScale * 2);
+=======
+				float offset = GameObject.Find (colorTexturedQuadName).GetComponent<Renderer> ().bounds.size.x * 0.5f;
+				_scanner.transform.localPosition = new Vector3 (x * _scannerScale * 2 - offset, 0.2f, y * _scannerScale * 2 - offset);
+>>>>>>> origin/master
+				_scanner.transform.Rotate (90, 0, 0); 
 				scannersList[x, y] = this._scanner;
 			}
 		}
@@ -342,9 +348,11 @@ public class Scanners : MonoBehaviour
 		if (colorSettings.position == null)
 			return;
 
-		foreach (var currColor in colorSettings.position) {
-			for (int i = 0; i < currColor.Value.Count; i++) {
-				sampleCubes [(ColorClassifier.SampleColor)currColor.Key] [i].transform.position = currColor.Value [i];
+		int index = 0;
+		foreach (var cube in sampleCubes) {
+			for (int i = 0; i < cube.Value.Count; i++) {
+				if (colorSettings.position.Count > index)
+					sampleCubes [cube.Key] [i].transform.position = colorSettings.position [index++];
 			}
 		}
 			
@@ -361,12 +369,14 @@ public class Scanners : MonoBehaviour
 			colorSettings = new ColorSettings (sampleCubes.Count);
 		}
 
+		int index = 0;
 		foreach (var cube in sampleCubes) {
 			for (int i = 0; i < cube.Value.Count; i++) {
-				if (!colorSettings.position.ContainsKey((int)cube.Key)) {
-					colorSettings.position [(int)cube.Key] = new List<Vector3>{ };
+				if (colorSettings.position.Count <= index) {
+					colorSettings.position.Add(new Vector3(0, 0, 0));
 				}
-				colorSettings.position [(int)cube.Key].Add(cube.Value [i].transform.position);
+				colorSettings.position [index++] = cube.Value [i].transform.position;
+				Debug.Log ("Writing settings for index " + index);
 			}
 		}
 
