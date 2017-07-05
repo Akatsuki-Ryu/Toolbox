@@ -9,10 +9,10 @@ using System.Linq;
 [System.Serializable]
 public class ColorSettings {
 	// Color sample objects
-	public Dictionary <int, List<Vector3>> position;
+	public List<Vector3> position;
 
 	public ColorSettings(int positionCount) {
-		position = new Dictionary<int, List<Vector3>>(positionCount);
+		position = new List<Vector3>();
 	}
 }
 
@@ -236,6 +236,8 @@ public class Scanners : MonoBehaviour
 		}
 		for (int i = 0; i < currentIds.GetLength(0); i++) {
 			for (int j = 0; j < currentIds.GetLength(1); j++) {
+				if (currentIds [i, j] >= 0)
+					matrix += " ";
 				matrix += currentIds [i, j] + "";
 				if (currentIds [i, j] >= 0)
 					matrix += " ";
@@ -342,9 +344,11 @@ public class Scanners : MonoBehaviour
 		if (colorSettings.position == null)
 			return;
 
-		foreach (var currColor in colorSettings.position) {
-			for (int i = 0; i < currColor.Value.Count; i++) {
-				sampleCubes [(ColorClassifier.SampleColor)currColor.Key] [i].transform.position = currColor.Value [i];
+		int index = 0;
+		foreach (var cube in sampleCubes) {
+			for (int i = 0; i < cube.Value.Count; i++) {
+				if (colorSettings.position.Count > index)
+					sampleCubes [cube.Key] [i].transform.position = colorSettings.position [index++];
 			}
 		}
 			
@@ -361,12 +365,14 @@ public class Scanners : MonoBehaviour
 			colorSettings = new ColorSettings (sampleCubes.Count);
 		}
 
+		int index = 0;
 		foreach (var cube in sampleCubes) {
 			for (int i = 0; i < cube.Value.Count; i++) {
-				if (!colorSettings.position.ContainsKey((int)cube.Key)) {
-					colorSettings.position [(int)cube.Key] = new List<Vector3>{ };
+				if (colorSettings.position.Count <= index) {
+					colorSettings.position.Add(new Vector3(0, 0, 0));
 				}
-				colorSettings.position [(int)cube.Key].Add(cube.Value [i].transform.position);
+				colorSettings.position [index++] = cube.Value [i].transform.position;
+				Debug.Log ("Writing settings for index " + index);
 			}
 		}
 
