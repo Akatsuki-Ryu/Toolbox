@@ -53,7 +53,6 @@ public class Scanners : MonoBehaviour
 	public GameObject _colorSamplerParent;
 
 	private string colorTexturedQuadName = "KeystonedTextureQuad";
-
 	public string _colorSettingsFileName = "_sampleColorSettings.json";
 
 	private Texture2D hitTex;
