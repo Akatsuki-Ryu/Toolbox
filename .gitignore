@@ -9,5 +9,5 @@
 **\Temp\*
 **\GridDecoder\Temp\*
 
-**/GridDecoder/Library/metadata/*
+**/GridDecoder/Library/metadata/**
 **/GridDecoder/Temp/**
