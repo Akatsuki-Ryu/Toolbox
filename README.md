@@ -1,4 +1,8 @@
-# CSharpScope Toolbox 
+# CSharpScope Toolbox is now DEPRECATED! 
+# Repo was split into 4 different 
+# repos, will be later combined into submodules 
+
+
 
 ## Overview
 [unity, c#, js, json]
