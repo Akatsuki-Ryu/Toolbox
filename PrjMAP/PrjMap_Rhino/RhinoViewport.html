@@ -1,0 +1,40 @@
+<html>
+<head>
+	<style>
+
+		body{
+			margin:0;
+			padding:0;
+			background:black;
+			color:white;
+		}
+
+	</style>
+	<script type="text/javascript">
+
+function foo(){
+
+	console.log(document)
+	document.getElementById('rhino').innerHTML='<img src="imageviewport.jpg">';	
+}
+
+
+</script>
+</head>
+
+<body onload="foo()">
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+
+
+<div id = "rhino"></div>
+
+<script src="maptastic.min.js"></script>
+
+<script>
+	Maptastic("rhino");
+</script>
+
+</body>
+</html>
