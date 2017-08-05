@@ -86,9 +86,9 @@
             var video_ids = [];
             for (var i = 0, f; f = files[i]; i++) {
                 if (f.name.slice(-3) != "mov" && f.name.slice(-3) != "MOV" && f.name.slice(-3) != "mp4" && f.name.slice(-3) != "MP4" && f.name.slice(-3) != "avi" && f.name.slice(-3) != "AVI") {
-                    output.push("<div class=\"mySlides fade\"><img src=\"media/" + escape(f.name) + "\" style=\"width:100%\"><div class=\"text\"></div></div>");
+                    output.push("<div class=\"mySlides fade\"><img src=\"media/" + escape(f.name) + "\" style=\"width:100%;height:100%\"><div class=\"text\"></div></div>");
                 } else {
-                    output.push("<div class=\"mySlides fade\"><video controls=\"controls\" poster=\"MEDIA\" preload=\"true\" loop=\"true\" autoplay=\"true\" src=\"media/" + escape(f.name) + "\" id=\"video" + i + "\"+ style=\"width:100%\"></video><div class=\"text\"></div></div>");
+                    output.push("<div class=\"mySlides fade\"><video controls=\"controls\" poster=\"MEDIA\" preload=\"true\" loop=\"true\" autoplay=\"true\" src=\"media/" + escape(f.name) + "\" id=\"video" + i + "\"+ style=\"width:100%;height:100%\"></video><div class=\"text\"></div></div>");
                     video_id = "video" + i;
                     video_ids.push(video_id);
                 }

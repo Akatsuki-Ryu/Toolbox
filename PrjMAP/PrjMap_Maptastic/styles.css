@@ -30,8 +30,9 @@ body {
 }
 
 video {
-    width: auto;
-    height: auto !important;
+    //width: auto;
+    //height: auto !important;
+    object-fit: fill;
 }
 
 
